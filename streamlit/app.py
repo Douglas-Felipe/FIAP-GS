@@ -6,8 +6,8 @@ import os
 # =============================
 # Carregar modelo e scaler
 # =============================
-modelo_path = "./modelo/knn.joblib"
-scaler_path = "./modelo/scaler.joblib"
+modelo_path = "../modelo/knn.joblib"
+scaler_path = "../modelo/scaler.joblib"
 
 if not (os.path.exists(modelo_path) and os.path.exists(scaler_path)):
     st.error("Modelo ou scaler não encontrados na pasta ./modelo/. Verifique os arquivos.")
