@@ -8,7 +8,7 @@ void initStorage() {
 }
 
 // Funcoes utilizadas para guardar as informacoes de chuva
-// de forma que os dados sobrevival ao reniciar o ESP
+// de forma que os dados sobrevivam ao reniciar o ESP
 
 void storePrecipitation(const String &date, float value) {
   preferences.putFloat(date.c_str(), value);
