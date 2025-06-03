@@ -7,6 +7,6 @@ void setLEDSuccess();
 void setLEDFailure();
 void setLEDError();
 
-void turnLEDOn(const int led);
+void turnOffLEDs();
 
 #endif

@@ -43,6 +43,9 @@ void setLEDError() {
   digitalWrite(LED_ORANGE_PIN, HIGH);
 }
 
-void turnLEDOn(const int led) {
-  digitalWrite(led, HIGH);
+void turnOffLEDs() {
+  digitalWrite(LED_YELLOW_PIN, LOW);
+  digitalWrite(LED_GREEN_PIN, LOW);
+  digitalWrite(LED_RED_PIN, LOW);
+  digitalWrite(LED_ORANGE_PIN, LOW);
 }

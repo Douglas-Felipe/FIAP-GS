@@ -109,23 +109,35 @@ void performDailyRoutine(bool manualTrigger) {
   Serial.println(payload);
 
   // 3. Enviando dados para o servidor
-  bool httpError = false;
   setLEDSending();
-  bool success = sendPrecipitationData(payload, httpError);
+  int result = sendPrecipitationData(payload);
 
-  // Tratando resposta do servidor
-  if (httpError) {
-    Serial.println("HTTP communication error");
-    setLEDError();
-  } else if (success) {
-    Serial.println("Data sent successfully");
-    setLEDSuccess();
-    lastSentDate = today;
-    storeLastSentDate(lastSentDate);
-  } else {
-    Serial.println("Server returned failure");
+  switch (result) {
+  case SERVER_IDLE:
+    Serial.println("Server is in IDLE");
+    turnOffLEDs();
+
+    break;
+  case SERVER_RESPONSE_FLOOD:
+    Serial.println("Flood detected");
     setLEDFailure();
+
     lastSentDate = today;
     storeLastSentDate(lastSentDate);
+
+    break;
+  case SERVER_RESPONSE_NO_FLOOD:
+    Serial.println("No flood detected");
+    setLEDSuccess();
+
+    lastSentDate = today;
+    storeLastSentDate(lastSentDate);
+
+    break;
+  case SERVER_RESPONSE_ERROR:
+    Serial.println("Server error");
+    setLEDError();
+
+    break;
   }
 }

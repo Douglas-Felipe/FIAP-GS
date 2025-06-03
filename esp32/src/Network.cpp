@@ -4,7 +4,7 @@
 #include <ArduinoJson.h>
 #include "Config.h"
 
-bool sendPrecipitationData(const String &jsonPayload, bool &httpError) {
+int sendPrecipitationData(const String &jsonPayload) {
   WiFiClientSecure client;
   client.setInsecure();  // Obrigatorio em modo de desenvolvimento
 
@@ -12,8 +12,7 @@ bool sendPrecipitationData(const String &jsonPayload, bool &httpError) {
   http.addHeader("Content-Type", "application/json");
   http.begin(client, SERVER_URL);
   
-  bool success = false;
-  httpError = false;
+  int result = SERVER_IDLE;
   
   Serial.println("Sending POST request...");
   int httpCode = http.POST(jsonPayload);
@@ -31,23 +30,36 @@ bool sendPrecipitationData(const String &jsonPayload, bool &httpError) {
       auto err = deserializeJson(doc, res);
       
       if (!err) {
-        success = doc["success"] | false;
+        bool predictResultIsBoolean = doc["enchente"].is<bool>();
+
+        if (predictResultIsBoolean) {
+          bool predictionResult = doc["enchente"].as<bool>();
+
+          if (predictionResult) {
+            result = SERVER_RESPONSE_FLOOD;
+          } else {
+            result = SERVER_RESPONSE_NO_FLOOD;
+          }
+        } else {
+          result = SERVER_RESPONSE_ERROR;
+        }
       } else {
         Serial.print("JSON parsing error: ");
         Serial.println(err.c_str());
-        success = false;
+        
+        result = SERVER_RESPONSE_ERROR;
       }
     } else {
       Serial.println("Empty response received");
-      success = false;
+      result = SERVER_RESPONSE_ERROR;
     }
   } else {
     Serial.print("HTTP error: ");
     Serial.println(http.errorToString(httpCode).c_str());
-    httpError = true;
-    success = false;
+    
+    result = SERVER_RESPONSE_ERROR;
   }
   
   http.end();
-  return success;
+  return result;
 }
