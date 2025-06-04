@@ -45,7 +45,7 @@ Caso esteja rodando a API no Windows com WSL instalado você vai precisar adicio
 * Selecione `Allow the connection`, clique `Next`.
 * Selecione o profile mais adequado (Domain, Private, Public). Selecione `Private`. Clique `Next`.
 
-Dê um nome a regra (e.g., “WSL2 FastAPI Port 8080”). Clique `Finish`
+Dê um nome a regra (e.g., “WSL2 FastAPI Port 8000”). Clique `Finish`
 
 ##### Port forward para o IP da instância WSL
 
