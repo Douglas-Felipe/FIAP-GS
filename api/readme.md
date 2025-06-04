@@ -35,6 +35,7 @@ A API expõe um endpoint principal (`/predict`) que recebe uma sequência de dad
 #### Observação
 
 Caso esteja rodando a API no Windows com WSL instalado você vai precisar adicionar uma regra no firewall do Windows pois por padrão o firewall bloqueia esse tipo de requisição.
+Assim o ESP32 vai poder acessar a API sem o Windows bloquear a requisição.
 
 ##### Abra Windows defender firewall com Advanced Security:
 
