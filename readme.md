@@ -46,11 +46,14 @@ O sistema é composto por diferentes módulos que trabalham em conjunto:
 3.  **`api/` - API de Previsão**:
     *   Uma API construída com FastAPI que expõe um endpoint (`/predict`).
     *   Este endpoint recebe uma lista com os dados de precipitação dos últimos 7 dias e utiliza o modelo KNN treinado para retornar uma previsão booleana indicando se há risco de enchente (`{"enchente": true/false}`).
-    *   Para instruções sobre como rodar, testar e interagir com a API, consulte o [README da API](./api/README.md).
+    *   Para instruções sobre como rodar, testar e interagir com a API, consulte o [README da API](./api/readme.md).
 
 4.  **`streamlit/` - Dashboard de Visualização**:
     *   Uma aplicação web interativa desenvolvida com Streamlit para visualizar os dados e as previsões do modelo.
-    *   Para mais informações sobre como executar e utilizar o dashboard, veja o [README do Streamlit](./streamlit/README.md).
+    *   Para mais informações sobre como executar e utilizar o dashboard, veja o [README do Streamlit](./streamlit/readme.md).
+
+5. **`datasets/` - Dados e como foram coletados**:
+    *   Dados coletados e salvos em um arquivo `.csv` junto com uma explicação do processo de coleta, tratamento e modelagem dos dados, veja [README do Dataset](./datasets/readme.md)
 
 
 ## Configuração e Instalação do Ambiente
@@ -93,10 +96,10 @@ Siga os passos abaixo para configurar o ambiente de desenvolvimento e rodar o pr
 
 Cada componente do projeto (API, Dashboard Streamlit) possui suas próprias instruções para execução. Consulte os respectivos arquivos README para obter orientações detalhadas:
 
-*   **API de Previsão**: Veja as instruções em [api/README.md](./api/README.md).
-*   **Dashboard Streamlit**: Veja as instruções em [streamlit/README.md](./streamlit/README.md).
+*   **API de Previsão**: Veja as instruções em [api/README.md](./api/readme.md).
+*   **Dashboard Streamlit**: Veja as instruções em [streamlit/README.md](./streamlit/readme.md).
 *   **Treinamento do Modelo**: O modelo já vem treinado (`knn.joblib` e `scaler.joblib` em `modelo/`). Para explorar o processo de treinamento ou retreinar o modelo, utilize o notebook [modelo/classificacao_algoritmos.ipynb](./modelo/classificacao_algoritmos.ipynb).
-*   **Coleta de Dados com ESP32**: Veja as instruções em [esp32/README.md](./esp32/README.md).
+*   **Coleta de Dados com ESP32**: Veja as instruções em [esp32/README.md](./esp32/readme.md).
 
 ## Estrutura do Diretório
 
