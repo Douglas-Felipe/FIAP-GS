@@ -6,10 +6,8 @@ const char* WIFI_PASSWORD = "";
 
 // Server URL (MVP: HTTPS)
 // Se o server estiver rodando localmente
-// Instale o pacote cloudflared na sua maquina e no terminal rode:
-// cloudflared tunnel --url http://localhost:PORTA_DO_SERVER
-// Cole a URL gerada aqui.
-const char* SERVER_URL = "https://darwin-sometimes-consisting-announced.trycloudflare.com/predict";
+// Verifique o ipv4 do seu computador(ipconfig) e coloque aqui
+const char* SERVER_URL = "http://192.168.0.151:8000";
 
 // HC-SR04 Pins (powered at 3.3V)
 const int TRIG_PIN = 5;   // Trigger pin → GPIO5

@@ -5,12 +5,13 @@
 #include "Config.h"
 
 int sendPrecipitationData(const String &jsonPayload) {
-  WiFiClientSecure client;
-  client.setInsecure();  // Obrigatorio em modo de desenvolvimento
+  WiFiClient client;
 
   HTTPClient http;
   http.addHeader("Content-Type", "application/json");
-  http.begin(client, SERVER_URL);
+  String endpoint  = SERVER_URL;
+  endpoint += "/predict";
+  http.begin(client, endpoint);
   
   int result = SERVER_IDLE;
   

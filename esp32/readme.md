@@ -97,3 +97,20 @@ O diagrama de simulação do Wokwi usa:
 5. **Precipitação** $P_{\text{mm}}$, em mm:  
    
    $P_{\text{mm}} = 10 \times h \quad(\text{visto que }1\text{cm} = 10\text{mm}).$
+
+## 3. Rodar com API
+
+O ESP32 depende que a API esteja rodando em segundo plano para que ele consiga enviar os dados medidos de precipitação e então aguardar o retorno do servidor.
+
+Para saber como rodar a API localmente acesse [aqui](../api/readme.md)
+
+### Observação
+Após estiver com a API rodando será necessário descobrir qual o IPv4 do seu computador e então colocar no arquivo `src/Config.cpp` como no exemplo abaixo:
+```c++
+const char* SERVER_URL = "http://192.168.0.151:8000";
+```
+
+Para descobrir o seu IPv4 rode no seu terminal: 
+```bash
+ifconfig
+```
