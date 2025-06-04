@@ -32,6 +32,36 @@ A API expõe um endpoint principal (`/predict`) que recebe uma sequência de dad
     ```
     A API estará disponível em `http://localhost:8000`.
 
+#### Observação
+
+Caso esteja rodando a API no Windows com WSL instalado você vai precisar adicionar uma regra no firewall do Windows pois por padrão o firewall bloqueia esse tipo de requisição.
+
+##### Abra Windows defender firewall com Advanced Security:
+
+* Pressione Win + R, digite wf.msc, e aperte Enter.
+* Crie uma inbound rule:
+* Escolha `Port`, e clique `Next`.
+* Selecione `TCP and Specific local ports`, e digite 8080. Clique `Next`.
+* Selecione `Allow the connection`, clique `Next`.
+* Selecione o profile mais adequado (Domain, Private, Public). Selecione `Private`. Clique `Next`.
+
+Dê um nome a regra (e.g., “WSL2 FastAPI Port 8080”). Clique `Finish`
+
+##### Port forward para o IP da instância WSL
+
+1. Descubra o IP da sua instância WSL:
+  - No terminal WSL digite `hostname -I`
+2. Execute o Powershell no mode administrador
+3. Cole o seguinte comando:
+
+```powershell
+netsh interface portproxy add v4tov4 `
+  listenport=8080 `
+  listenaddress=0.0.0.0 `
+  connectport=8080 `
+  connectaddress=<IP-RETORNADO-NO-PASSO-1>
+``` 
+
 ### Sobre o Modelo de Machine Learning
 
 A API utiliza um modelo de classificação (KNN - K-Nearest Neighbors) treinado para prever enchentes. O modelo foi alimentado com características derivadas da precipitação dos últimos 7 dias, incluindo:
