@@ -110,7 +110,12 @@ Após estiver com a API rodando será necessário descobrir qual o IPv4 do seu c
 const char* SERVER_URL = "http://192.168.0.151:8000";
 ```
 
-Para descobrir o seu IPv4 rode no seu terminal: 
+* Para descobrir o seu IPv4 rode no seu terminal (Linux e macOS): 
 ```bash
-ifconfig
+ifconfig 
+```
+
+* Para descobrir o seu IPv4 rode no seu terminal/powershell (Windows): 
+```bash
+ipconfig 
 ```
