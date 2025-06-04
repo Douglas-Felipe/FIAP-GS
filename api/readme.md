@@ -41,7 +41,7 @@ Caso esteja rodando a API no Windows com WSL instalado você vai precisar adicio
 * Pressione Win + R, digite wf.msc, e aperte Enter.
 * Crie uma inbound rule:
 * Escolha `Port`, e clique `Next`.
-* Selecione `TCP and Specific local ports`, e digite 8080. Clique `Next`.
+* Selecione `TCP and Specific local ports`, e digite 8000. Clique `Next`.
 * Selecione `Allow the connection`, clique `Next`.
 * Selecione o profile mais adequado (Domain, Private, Public). Selecione `Private`. Clique `Next`.
 
@@ -56,9 +56,9 @@ Dê um nome a regra (e.g., “WSL2 FastAPI Port 8080”). Clique `Finish`
 
 ```powershell
 netsh interface portproxy add v4tov4 `
-  listenport=8080 `
+  listenport=8000 `
   listenaddress=0.0.0.0 `
-  connectport=8080 `
+  connectport=8000 `
   connectaddress=<IP-RETORNADO-NO-PASSO-1>
 ``` 
 
